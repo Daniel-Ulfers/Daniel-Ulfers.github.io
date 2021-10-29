@@ -50,7 +50,17 @@
         }
     }
     function boxClick(){
-        yspeed = yspeed + 5
-        xspeed = xspeed + 5
+        if (xspeed >= 0){
+            xspeed = xspeed + 5
+        }
+        if (xspeed <= 0){
+            xspeed = xspeed - 5
+        }
+        if (yspeed >= 0){
+            yspeed = yspeed + 5
+        }
+        if (yspeed <= 0){
+            yspeed = yspeed - 5
+        }
     }
 </script>
