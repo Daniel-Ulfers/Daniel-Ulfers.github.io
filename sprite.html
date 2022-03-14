@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+  <style>
+    img {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+  <img id="pix" src="sprite.png" height="160px" width="90px">
+  <canvas id="myCanvas" width="1432" height="769"></canvas>
+</body>
+
+</html>
+<script>
+  var sx = [20, 90, 156, 90]
+  var sy = [30, 30, 30, 30]
+  var x = 0
+  var y = 0
+  var frameIndex = 0
+
+  window.onload = function () {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("pix");
+    setInterval(loop, 10)
+
+
+
+    function loop() {
+      ctx.clearRect(0, 0, 10000000000, 10000000000)
+
+
+      ctx.drawImage(img, sx[frameIndex], sy[frameIndex], 65, 70, x, y, 65, 70);
+      //(img, sx, sy, sw, sh, dx, dy, du, dl)
+
+      frameIndex = frameIndex + 1
+      x = x + 0 //boobs in my mouf//
+      y = y + 1
+      if (frameIndex === 4) {
+        frameIndex = 0
+      }
+    }
+  }
+
+
+</script>

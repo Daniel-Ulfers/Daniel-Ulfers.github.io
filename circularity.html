@@ -1,17 +1,90 @@
 <!doctype html>
 <html>
 
-<head></head>
+<head>
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+
+</head>
 
 <body>
-    <canvas id = "canvas" width = "600" height = "600"></canavs>
+    <canvas id="canvas" width="1400" height="1000">
+
+        </canavs>
 </body>
 
 <script>
     var canvas = document.getElementById("canvas")
     var ctx = canvas.getContext("2d")
+    var x = []
+    var y = []
+    var xspeed = []
+    var yspeed = []
+    var color = []
 
-    ctx.fillRact(4,7,3,8)
+    for (i = 0; i < 20; i = i + 1) {
+        x.push(Math.random() * 900 + 50)
+        y.push(Math.random() * 900 + 50)
+        xspeed.push(Math.random() * 5 + 5)
+        yspeed.push(Math.random() * 5 + 5)
+        color.push("hsl(" + Math.random() * 360 + ",100%,50%)")
+    }
+
+    setInterval(move, 10)
+
+    function move() {
+
+            ctx.clearRect(0,0, 10000000000, 10000000000 )
+        for (i = 0; i < x.length; i = i + 1) {
+
+            for (var j = 0; j < x.length; j = j + 1) {
+
+                if (i !== j) {
+
+                    if(Math.sqrt(Math.pow(y[i] - y[j], 2) + Math.pow(x[i] - x[j]  , 2)) <= 100 ){
+
+                        var temp = xspeed[i]
+                        xspeed[i] = xspeed[j]
+                        xspeed[j] = temp
+
+                        var temp = yspeed[i]
+                        yspeed[i] = yspeed[j]
+                        yspeed[j] = temp
+                    }
+                }
+            }
+
+            ctx.beginPath()
+            ctx.arc(x[i], y[i], 50, 0, 2 * Math.PI)
+            ctx.fillStyle = color[i]
+            ctx.fill()
+
+            x[i] = x[i] + xspeed[i]
+            y[i] = y[i] + yspeed[i]
+
+
+            if (x[i] >= window.innerWidth - 100) {
+                xspeed[i] = -xspeed[i]
+               
+            }
+            if (x[i] <= 0) {
+                xspeed[i] = -xspeed[i]
+                
+            }
+            if (y[i] >= window.screenTop) {
+                yspeed[i] = -yspeed[i]
+                
+            }
+            if (y[i] <= window.innerHeight) {
+                yspeed[i] = -yspeed[i]
+             
+            }
+        }
+    }
+
 </script>
 
 </html>
